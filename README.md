@@ -123,8 +123,8 @@ MotorAI isn't just another car marketplace—it's an **intelligent platform** th
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/yourusername/ai-car-marketplace.git
-cd ai-car-marketplace
+git clone https://github.com/yourusername/motorai.git
+cd motorai
 npm install
 ```
 
