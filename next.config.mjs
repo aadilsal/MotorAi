@@ -1,30 +1,31 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable error details in production for debugging
   experimental: {
-    serverComponentsExternalPackages: ["@prisma/client"],
+    serverComponentsHmrCache: false,
   },
 
-  // Show detailed errors (remove after debugging)
-  compiler: {
-    removeConsole: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "tdjkrqnwuobelmsztlfm.supabase.co",
+      },
+    ],
   },
 
-  // Enable logging
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
-
-  // Webpack config for better error handling
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && isServer) {
-      // Better source maps for debugging
-      config.devtool = "source-map";
-    }
-    return config;
+  async headers() {
+    return [
+      {
+        source: "/embed",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: "frame-src 'self' https://motor-ai-waitlist.created.app;",
+          },
+        ],
+      },
+    ];
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
