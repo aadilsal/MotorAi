@@ -49,11 +49,10 @@ const isProtectedRoute = createRouteMatcher([
   "/reservations(.*)",
 ]);
 
-export default clerkMiddleware((auth, req) => {
-  const { userId } = auth();
+export default clerkMiddleware(async (auth, req) => {
+  const { userId, redirectToSignIn } = await auth();
 
   if (!userId && isProtectedRoute(req)) {
-    const { redirectToSignIn } = auth();
     return redirectToSignIn();
   }
 
